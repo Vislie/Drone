@@ -7,7 +7,7 @@ The brain of the drone is an Arduino Nano. We use a gyroscope and accelerometer 
 *NB:* We are working on this project now, so the project, and code, is not finished and the drone doesn't fly (yet :wink:). We are currently tuning the regulators to make the drone able to hover.  
 
 ![Bad regulator](media/PitchBad.gif)
-![Better regulator](media/PitchOk.gif)
+![Better regulator](media/PitchOK.gif)
 
 ## The parts
 We ordered most of the parts on ebay, but some parts were bought at a workshop at NTNU (University).
