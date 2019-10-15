@@ -1,5 +1,5 @@
 # Drone
-A DIY drone project - Work In Progress
+A DIY drone project - Work In Progress.  
 Four guys trying to build a drone (quadcopter) from scratch :D
 
 ## Project
