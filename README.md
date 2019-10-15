@@ -6,8 +6,10 @@ Four guys trying to build a drone (quadcopter) from scratch :D
 The brain of the drone is an Arduino Nano. We use a gyroscope and accelerometer to get the data necessary to control the drone. We have ha bluetooth module to communicate with the drone. Eventually we want to switch over to a RC-controller for extended range, but for testing and development purposes, the bluetooth module works fine and lets us communicate with the drone through a basic android app (made with MIT App Developer).  
 *NB:* We are working on this project now, so the project, and code, is not finished and the drone doesn't fly (yet :wink:). We are currently tuning the regulators to make the drone able to hover.  
 
-![Bad regulator](media/PitchBad.gif = 100x100)
+![Bad regulator](media/PitchBad.gif = 100x100)  
 ![Better regulator](media/PitchOK.gif | width = 100)
+
+<img src="media/PitchBad.gif" width="100" height="100">
 
 ## The parts
 We ordered most of the parts on ebay, but some parts were bought at a workshop at NTNU (University).
