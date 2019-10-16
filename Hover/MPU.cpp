@@ -39,6 +39,7 @@ void setupMPU() {
 
 
 void calibrateGyro() {
+  // While calibrating, StatusLED will light up
 	digitalWrite(STATUS_PIN, HIGH);
 	Serial.println("Calibrating Gyro...");
 	
@@ -160,6 +161,7 @@ void calcAngles() {
 void MPUPrintData() {
 	static int count = 0;
 
+  // Dont want to print every cycle...
 	count++;
 	if (count % 100 == 0) {
 		count = 1;

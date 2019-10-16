@@ -1,16 +1,6 @@
-//
-//  PID_Pitch.hpp
-//  PID
-//
-//  Created by Lars Eik Breirem on 29/09/2019.
-//  Copyright © 2019 Lars Eik Breirem. All rights reserved.
-//
 
 #ifndef PID_Pitch_hpp
 #define PID_Pitch_hpp
-
-
-
 
 constexpr float motor_saturation = 120.0;
 
@@ -39,7 +29,7 @@ extern float yaw_prev; // See CPP for definition
 
 constexpr float Kp_yaw = 1.0;
 constexpr float Ki_yaw = 1.0;
-constexpr float Kd_yaw = 0.0;	//1.0; // Probably dont need I for yaw ( Ref Haavard )
+constexpr float Kd_yaw = 0.0;	// Probably dont need I for yaw ( Ref Haavard )
 
 
 

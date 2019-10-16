@@ -3,7 +3,7 @@
 SoftwareSerial BTserial(4, 5); // RX | TX
 // Connect the HC-05 TX to Arduino pin 4 RX. 
 // Connect the HC-05 RX to Arduino pin 5 TX through a voltage divider.
-// Connect the HC-05 STATE pin to Arduino pin 6.
+// Connect the HC-05 STATE pin to Arduino pin 6. (We haven't done this)
 
 int thrustBT;     // Thrust received from BT module
 const byte BTpin = 6;     // Read-Pin STATE from HC-05 (we dont use this)
@@ -50,7 +50,6 @@ void btPrint(float val) {
 		counter = 0;
 		int8_t a = round(val);
 		BTserial.write(a);
-		//Serial.println("Hore");
 	}
 	//snprintf(str, sizeof(str), "%.2f", val);
 	//BTserial.write('a');

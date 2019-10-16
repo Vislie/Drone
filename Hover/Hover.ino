@@ -70,20 +70,26 @@ void setup() {
 }
 
 void loop() {
-
+  // Read data from the MPU
+  readMPU();
+  /*
   if (readMPU()) {
     while (micros() - loopTimer < 4000);
     loopTimer = micros();
   }
+  */
 
   //Make this check global
   anti_windup = 1;
+  // If any motor saturated then enable the antiwindup
   if (m1Th >= motor_saturation || m2Th >= motor_saturation || m3Th >= motor_saturation || m4Th >= motor_saturation) anti_windup = 0;
+  // Initialize variables for motorthrust from Pitch, Roll and Yaw PID controllers
   float m1P = 0.0,    m2P = 0.0,    m3P = 0.0,    m4P = 0.0;    // Thrust from Pitch-PID
   float m1R = 0.0,    m2R = 0.0,    m3R = 0.0,    m4R = 0.0;    // Thrust from Roll-PID
   float m1Y = 0.0,    m2Y = 0.0,    m3Y = 0.0,    m4Y = 0.0;    // Thrust from Yaw-PID
   float m1Base = 30.0, m2Base = 30.0, m3Base = 30.0, m4Base = 30.0; // Base thrust (from phone)
-  
+
+  // Calculate Pitch, Roll and Yaw thrust from the PID's
   PID_Pitch(m1P, m2P, m3P, m4P);
   PID_Roll(m1R, m2R, m3R, m4R);
   PID_Yaw(m1Y, m2Y, m3Y, m4Y);
@@ -94,7 +100,7 @@ void loop() {
   m4Th = constrain(m4Base + m4P, 0.0, maxThrust); // + m4R + m4Y;
   int thrust = getThrust(); // Receive 1/0 (enable/disable motors)
   btPrint(pitch);
-
+  
   Serial.print(pitch);
   Serial.print(" ");
   Serial.print(m1Th);
@@ -104,8 +110,9 @@ void loop() {
   Serial.print(m3Th);
   Serial.print(" ");
   Serial.println(m4Th);
-  
-  if (thrust != 0) {
+
+  // If mototrs enabled
+  if (thrust) {
     //Serial.print(m1Th);
     //Serial.print(" ");
     //Serial.print(m2Th);
@@ -114,17 +121,22 @@ void loop() {
     //Serial.print(" ");
     //Serial.println(m4Th);
     //Serial.prinln(" ");
-  
+
+    // Write thrust to motors
     motor1.write(m1Th);
     motor2.write(m2Th);
     motor3.write(m3Th);
     motor4.write(m4Th);
   }
   else {
+    // Set motorthrust to zero
     motor1.write(0);
     motor2.write(0);
     motor3.write(0);
     motor4.write(0);
   }
 
+  // Wait until 4 milliseconds to ensure 250Hz
+  while (micros() - loopTimer < 4000);
+  loopTimer = micros();
 }

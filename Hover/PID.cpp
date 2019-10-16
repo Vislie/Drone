@@ -1,10 +1,3 @@
-//
-//  PID_Pitch.cpp
-//  PID
-//
-//  Created by Lars Eik Breirem on 29/09/2019.
-//  Copyright © 2019 Lars Eik Breirem. All rights reserved.
-//
 
 #include "PID.h"
 #include "Arduino.h"
@@ -30,16 +23,16 @@ int anti_windup = 1;
 
 
 void PID_Pitch(float &motor1, float &motor2, float &motor3, float &motor4){
-    
+	// calculate error
     float error_pitch = pitch_ref - pitch;
     static float error_prev_pitch = error_pitch;
     
-    
+    // Decleare regulator variables
     float P = 0;
     static float I = 0;
     float D = 0;
     
-    
+	// Calculate gains
     P = Kp_pitch * error_pitch;
     I += Ki_pitch * error_pitch * anti_windup * 0.004;	// (1 / 250) Hz
     D = Kd_pitch * (error_pitch - error_prev_pitch);
@@ -63,14 +56,16 @@ void PID_Pitch(float &motor1, float &motor2, float &motor3, float &motor4){
 
 
 void PID_Roll(float &motor1, float &motor2, float &motor3, float &motor4){
-    
+	// calculate error
     float error_roll = roll_ref - roll;
     static float error_prev_roll = error_roll;
     
+	// Decleare regulator variables
     float P = 0;
     static float I = 0;
     float D = 0;
     
+	// Calculate gains
     P = Kp_roll * error_roll;
     I += Ki_roll * error_roll * anti_windup * 0.004;	// (1 / 250) Hz
     D = Kd_roll * (error_roll - error_prev_roll);
@@ -95,14 +90,16 @@ void PID_Roll(float &motor1, float &motor2, float &motor3, float &motor4){
 
 
 void PID_Yaw(float &motor1, float &motor2, float &motor3, float &motor4) {
-
+	// calculate error
 	float error_yaw = yaw_ref - yaw;
 	static float error_prev_yaw = error_yaw;
 
+	// Decleare regulator variables
 	float P = 0;
 	static float I = 0;
 	float D = 0;
 
+	// Calculate gains
 	P = Kp_yaw * error_yaw;
 	I += Ki_yaw * error_yaw * anti_windup * 0.004;	// (1 / 250) Hz
 	D = Kd_yaw * (error_yaw - error_prev_yaw);
