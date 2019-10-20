@@ -57,7 +57,7 @@ void setup() {
   // Setup and calibrate gyro
   setupMPU();
   Serial.println("Wait...");
-  delay(2000);
+  //delay(2000);
   calibrateGyro();
   Serial.println("Setup Complete!");
   // Do not start the main code before we start from the app
@@ -94,14 +94,16 @@ void loop() {
   PID_Roll(m1R, m2R, m3R, m4R);
   PID_Yaw(m1Y, m2Y, m3Y, m4Y);
   // Calculate tot thrust to motors
-  m1Th = constrain(m1Base + m1P, 0.0, maxThrust); // + m1R + m1Y;
-  m2Th = constrain(m2Base + m2P, 0.0, maxThrust); // + m2R + m2Y;
-  m3Th = constrain(m3Base + m3P, 0.0, maxThrust); // + m3R + m3Y;
-  m4Th = constrain(m4Base + m4P, 0.0, maxThrust); // + m4R + m4Y;
+  m1Th = constrain(m1Base + m1R, 0.0, maxThrust); // + m1R + m1Y;
+  m2Th = constrain(m2Base + m2R, 0.0, maxThrust); // + m2R + m2Y;
+  m3Th = constrain(m3Base + m3R, 0.0, maxThrust); // + m3R + m3Y;
+  m4Th = constrain(m4Base + m4R, 0.0, maxThrust); // + m4R + m4Y;
   int thrust = getThrust(); // Receive 1/0 (enable/disable motors)
-  btPrint(pitch);
-  
-  Serial.print(pitch);
+  //btPrint(pitch);
+
+  log();
+  /*
+  Serial.println(pitch);
   Serial.print(" ");
   Serial.print(m1Th);
   Serial.print(" ");
@@ -110,7 +112,8 @@ void loop() {
   Serial.print(m3Th);
   Serial.print(" ");
   Serial.println(m4Th);
-
+  */
+  
   // If mototrs enabled
   if (thrust) {
     //Serial.print(m1Th);
@@ -137,6 +140,19 @@ void loop() {
   }
 
   // Wait until 4 milliseconds to ensure 250Hz
-  while (micros() - loopTimer < 4000);
+  while (micros() - loopTimer < 4000) {
+    //Serial.print("Waiting...\t");  // Debugging
+    //Serial.println(micros() - loopTimer);
+  }
   loopTimer = micros();
+}
+
+
+void log() {
+  static int count = 0;
+  count++;
+  if (count == 100) {
+    count = 0;
+    Serial.println(pitch);
+  }
 }

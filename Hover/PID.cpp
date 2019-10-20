@@ -26,6 +26,7 @@ void PID_Pitch(float &motor1, float &motor2, float &motor3, float &motor4){
 	// calculate error
     float error_pitch = pitch_ref - pitch;
     static float error_prev_pitch = error_pitch;
+	static float error_2xprev_pitch = error_pitch;
     
     // Decleare regulator variables
     float P = 0;
@@ -35,23 +36,38 @@ void PID_Pitch(float &motor1, float &motor2, float &motor3, float &motor4){
 	// Calculate gains
     P = Kp_pitch * error_pitch;
     I += Ki_pitch * error_pitch * anti_windup * 0.004;	// (1 / 250) Hz
-    D = Kd_pitch * (error_pitch - error_prev_pitch);
-    
+    D = Kd_pitch * (error_pitch - ((error_prev_pitch + error_2xprev_pitch) / 2));
+
+	error_2xprev_pitch = error_prev_pitch;
     error_prev_pitch = error_pitch;
 	pitch_prev = pitch;
     
-    float sum_thrust = fabs(P + I + D);
+    float sum_thrustPI = fabs(P + I);
     if (error_pitch >= 0.0 ){
-        motor1 = sum_thrust;
-        motor2 = sum_thrust;
-        motor3 = -sum_thrust;
-        motor4 = -sum_thrust;
+        motor1 = sum_thrustPI;
+        motor2 = sum_thrustPI;
+        motor3 = -sum_thrustPI;
+        motor4 = -sum_thrustPI;
     }else{
-        motor1 = -sum_thrust;
-        motor2 = -sum_thrust;
-        motor3 = sum_thrust;
-        motor4 = sum_thrust;
+        motor1 = -sum_thrustPI;
+        motor2 = -sum_thrustPI;
+        motor3 = sum_thrustPI;
+        motor4 = sum_thrustPI;
     }
+
+	float sum_thrustD = fabs(D);
+	if (D >= 0.0) {
+		motor1 +=  sum_thrustD;
+		motor2 +=  sum_thrustD;
+		motor3 += -sum_thrustD;
+		motor4 += -sum_thrustD;
+	}
+	else {
+		motor1 += -sum_thrustD;
+		motor2 += -sum_thrustD;
+		motor3 +=  sum_thrustD;
+		motor4 +=  sum_thrustD;
+	}
 }
 
 
@@ -59,6 +75,7 @@ void PID_Roll(float &motor1, float &motor2, float &motor3, float &motor4){
 	// calculate error
     float error_roll = roll_ref - roll;
     static float error_prev_roll = error_roll;
+	static float error_2xprev_roll = error_roll;
     
 	// Decleare regulator variables
     float P = 0;
@@ -68,24 +85,38 @@ void PID_Roll(float &motor1, float &motor2, float &motor3, float &motor4){
 	// Calculate gains
     P = Kp_roll * error_roll;
     I += Ki_roll * error_roll * anti_windup * 0.004;	// (1 / 250) Hz
-    D = Kd_roll * (error_roll - error_prev_roll);
+    D = Kd_roll * (error_roll - ((error_prev_roll + error_2xprev_roll) / 2));
     
+	error_2xprev_roll = error_prev_roll;
     error_prev_roll = error_roll;
 	roll_prev = roll;
     
-    float sum_thrust = fabs(P + I + D);
-    
+    float sum_thrustPI = fabs(P + I);
     if (error_roll >= 0.0 ) {
-        motor1 =  sum_thrust;
-		motor2 = -sum_thrust;
-		motor3 = -sum_thrust;
-        motor4 =  sum_thrust;
+        motor1 =  sum_thrustPI;
+		motor2 = -sum_thrustPI;
+		motor3 = -sum_thrustPI;
+        motor4 =  sum_thrustPI;
     }else{
-        motor1 = -sum_thrust;
-		motor2 =  sum_thrust;
-		motor3 =  sum_thrust;
-        motor4 = -sum_thrust;
+        motor1 = -sum_thrustPI;
+		motor2 =  sum_thrustPI;
+		motor3 =  sum_thrustPI;
+        motor4 = -sum_thrustPI;
     }
+
+	float sum_thrustD = fabs(D);
+	if (D >= 0.0) {
+		motor1 +=  sum_thrustD;
+		motor2 += -sum_thrustD;
+		motor3 += -sum_thrustD;
+		motor4 +=  sum_thrustD;
+	}
+	else {
+		motor1 += -sum_thrustD;
+		motor2 +=  sum_thrustD;
+		motor3 +=  sum_thrustD;
+		motor4 += -sum_thrustD;
+	}
 }
 
 

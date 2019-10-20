@@ -131,7 +131,7 @@ void calcAngles() {
 	if (gForceZ == 0) {
 		gForceZ = 0.00000001;		// Making sure we dont divide by zero
 	}
-	accPitch = atan(gForceX / gForceZ) * 180 / PI;
+	accPitch = (atan(gForceX / gForceZ) * 180 / PI) - 4;	// Some measured offset because gyro is not flat in pitch direction
 	accRoll = atan(gForceY / gForceZ) * 180 / PI;
 
 	// If first loop, then set the angles based on the accelerometer

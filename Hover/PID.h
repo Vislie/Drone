@@ -9,8 +9,9 @@ extern float pitch_ref; // See CPP for definition
 //float pitch = 0.0;
 extern float pitch_prev; // See CPP for definition
 
-constexpr float Kp_pitch = 0.35;
-constexpr float Ki_pitch = 0.1;
+// Ku = 0.05, Tu = 3.09, ZN-method
+constexpr float Kp_pitch = 0.07;
+constexpr float Ki_pitch = 0.007;
 constexpr float Kd_pitch = 10.0;
 
 //-----------Roll------------//
@@ -18,9 +19,9 @@ extern float roll_ref; // See CPP for definition
 //float roll = 0.0;
 extern float roll_prev; // See CPP for definition
 
-constexpr float Kp_roll = 1.0;
-constexpr float Ki_roll = 1.0;
-constexpr float Kd_roll = 1.0;
+constexpr float Kp_roll = 0.07;
+constexpr float Ki_roll = 0.007;
+constexpr float Kd_roll = 10.0;
 
 //-----------Yaw------------//
 extern float yaw_ref; // See CPP for definition
