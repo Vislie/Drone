@@ -8,6 +8,7 @@ The brain of the drone is an Arduino Nano. We use a gyroscope and accelerometer 
 
 <img src="media/PitchBad.gif" width="150" height="150">
 <img src="media/PitchOK.gif" width="150" height="150">
+<img src="media/FlightWithRope.gif" width="150" height="150">
 
 ## The parts
 We ordered most of the parts on ebay, but some parts were bought at a workshop at NTNU (University).
@@ -20,3 +21,8 @@ We ordered most of the parts on ebay, but some parts were bought at a workshop a
 * 1045 Propellers
 * 45C 3S LIPO Battery
 * Misc electronics
+
+## The team
+* Lars Breirem
+* Håkon Vislie
+* Eivind Dogger
