@@ -7,22 +7,15 @@
 int anti_windup;
 extern float pitch, roll, yaw;
 extern float gForceX, gForceY, gForceZ;
-float pitch_ref, pitch_prev, roll_ref, roll_prev, yaw_ref, yaw_prev;
+float pitch_ref, pitch_prev, roll_ref;
 float accX_ref, accY_ref, accZ_ref;
 
 
 void setupPID() {
-	//-----------Pitch------------//
+	//-----------Pitch, Roll, Yaw refs------------//
 	pitch_ref = 0.0;
-	pitch_prev = 0.0;
-
-	//-----------Roll------------//
 	roll_ref = 0.0;
-	roll_prev = 0.0;
-
-	//-----------Yaw------------//
 	yaw_ref = 0.0;
-	yaw_prev = 0.0;
 
 	//-----------accX------------//
 	accX_ref = 0.0;

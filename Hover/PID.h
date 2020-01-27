@@ -10,8 +10,6 @@ constexpr float motor_saturation = 160.0;
 
 //-----------Pitch------------//
 extern float pitch_ref; // See CPP for definition
-//float pitch = 0.0;
-extern float pitch_prev;
 
 // Ku = 0.05, Tu = 3.09, ZN-method
 constexpr float Kp_pitch = 0.1;
@@ -20,8 +18,6 @@ constexpr float Kd_pitch = 14.0;	//tidl 10.0, 12
 
 //-----------Roll------------//
 extern float roll_ref;
-//float roll = 0.0;
-extern float roll_prev;
 
 constexpr float Kp_roll = 0.1;
 constexpr float Ki_roll = 0.012;
@@ -29,8 +25,6 @@ constexpr float Kd_roll = 14.0;
 
 //-----------Yaw------------//
 extern float yaw_ref;
-//float roll = 0.0;
-extern float yaw_prev;
 
 constexpr float Kp_yaw = 0.2;
 constexpr float Ki_yaw = 0.03;
