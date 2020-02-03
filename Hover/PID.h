@@ -26,21 +26,21 @@ constexpr float Kd_roll = 14.0;
 //-----------Yaw------------//
 extern float yaw_ref;
 
-constexpr float Kp_yaw = 0.2;
-constexpr float Ki_yaw = 0.03;
-constexpr float Kd_yaw = 25.0;
+constexpr float Kp_yaw = 0.0;// 0.2;
+constexpr float Ki_yaw = 0.0;// 0.03;
+constexpr float Kd_yaw = 0.0;// 25.0;
 
 //-----------accX------------//
 extern float accX_ref;
 
-constexpr float Kp_accX = 0.2;
+constexpr float Kp_accX = 0.0;// 0.2;
 constexpr float Ki_accX = 0.0;
 constexpr float Kd_accX = 0.0;
 
 //-----------accY------------//
 extern float accY_ref;
 
-constexpr float Kp_accY = 0.2;
+constexpr float Kp_accY = 0.0;//0.2;
 constexpr float Ki_accY = 0.0;
 constexpr float Kd_accY = 0.0;
 

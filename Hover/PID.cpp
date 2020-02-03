@@ -7,7 +7,7 @@
 int anti_windup;
 extern float pitch, roll, yaw;
 extern float gForceX, gForceY, gForceZ;
-float pitch_ref, pitch_prev, roll_ref;
+float pitch_ref, roll_ref, yaw_ref;
 float accX_ref, accY_ref, accZ_ref;
 
 
@@ -50,7 +50,6 @@ void PID_Pitch(float &motor1, float &motor2, float &motor3, float &motor4){
 
 	error_2xprev_pitch = error_prev_pitch;
 	error_prev_pitch = error_pitch;
-	pitch_prev = pitch;
 
   // ADD PROPORTIONAL PART TO THRUST
 	motor1 =  P;
@@ -90,7 +89,6 @@ void PID_Roll(float &motor1, float &motor2, float &motor3, float &motor4){
     
 	error_2xprev_roll = error_prev_roll;
 	error_prev_roll = error_roll;
-	roll_prev = roll;
 
 	// ADD PR0PORTIONAL PART TO THRUST
 	motor1 =  P;
@@ -130,7 +128,6 @@ void PID_Yaw(float &motor1, float &motor2, float &motor3, float &motor4) {
 
 	error_2xprev_yaw = error_prev_yaw;
 	error_prev_yaw = error_yaw;
-	yaw_prev = yaw;
 
 	motor1 = -P;
 	motor2 =  P;
