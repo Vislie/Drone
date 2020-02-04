@@ -4,22 +4,20 @@
 #include "PID.h"
 #include "Quadcopter.h"
 
-// create servo object to control the motors
+/* create servo object to control the motors
+ *  Servos are controlled by a pwm signal, just as the ESC, so we
+ *  reuse the library so we can control the ESCs by sending them
+ *  a pwm signal of 1000-2000 us.
+ */
 Servo motor1;
 Servo motor2;
 Servo motor3;
 Servo motor4;
 
-
+// Timer for constant loop-time
 extern long loopTimer;
 
-// PID
-extern int anti_windup;
-
-// Motor thrusts
-extern const float motor_saturation;
-float maxThrust = 120.0;
-
+// Declear a global quadobject containing a lot of parameters
 Quadcopter* quad;
 
 void setup() {
@@ -49,7 +47,6 @@ void setup() {
   Serial.println("Wait...");
   //delay(2000);
   calibrateGyro();
-  setupPID();
   Serial.println("Setup Complete!");
   // Do not start the main code before we start from the app
   while (getThrust() == 0) {
@@ -64,15 +61,13 @@ void loop() {
   // Read data from the MPU
   readMPU();
   
-  //Make this check global
-  anti_windup = 1;
-  
   // Declearing thrust for the motors
   float m1Th = 0.0;
   float m2Th = 0.0;
   float m3Th = 0.0;
   float m4Th = 0.0;
-  
+
+  // Passed by reference as to update all the values for the motors
   quad->getMotorThrust(m1Th, m2Th, m3Th, m4Th);
   // Write thrust to motors
   motor1.write(m1Th);
