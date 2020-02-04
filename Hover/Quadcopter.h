@@ -5,7 +5,6 @@ enum class flightState { manualHeightControl };
 class Quadcopter
 {
 	flightState state = flightState::manualHeightControl;
-	const int maxThrust = 120;
 	bool firstLoop = true;
 
 public:
@@ -22,6 +21,10 @@ public:
 	float accOffY = 0.0201;
 	float accOffZ = 0.02;
 	float calibX, calibY, calibZ;	// Gyro offset values
+	int maxThrust = 120;
+	float maxIntegralThrust = (float)maxThrust / 3.0;
+	int integralAntiWindupPitch = 1;	// 1 = Integral is activated
+	int integralAntiWindupRoll = 1;		// 1 = Integral is activated
 
 	Quadcopter();
 	~Quadcopter();
