@@ -4,12 +4,12 @@
 #include <Wire.h>
 #include "Arduino.h"
 
-extern float gForceX, gForceY, gForceZ;
-extern float rotX, rotY, rotZ;
-extern float calibX, calibY, calibZ;
+//extern float gForceX, gForceY, gForceZ;
+//extern float rotX, rotY, rotZ;
+//extern float calibX, calibY, calibZ;
 //extern float gyrAngX, gyrAngY, gyrAngZ;
-extern float accPitch, accRoll;
-extern float pitch, roll, yaw;
+//extern float accPitch, accRoll;
+//extern float pitch, roll, yaw;
 extern float mpuTemp;
 extern long loopTimer;
 extern bool firstLoop;
@@ -23,4 +23,4 @@ bool MPUReadAccel();
 bool MPUReadGyro();
 
 void MPUPrintData();
-void calcAngles();
+//void calcAngles();
