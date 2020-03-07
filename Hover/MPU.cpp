@@ -145,9 +145,9 @@ void MPUPrintData() {
 		count = 1;
 		//Serial.print(posX);
 		//Serial.print("\t");
-		Serial.print(quad->gForceX);
-		Serial.print("\t");
-		Serial.println(quad->gForceZ);
+		//Serial.print(quad->gForceX);
+		//Serial.print("\t");
+		//Serial.println(quad->gForceZ);
 		//Serial.print("\t");
 		//Serial.println(quad->pitch);
 		//Serial.print(" ");

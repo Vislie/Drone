@@ -87,7 +87,7 @@ void PID_Roll(float &motor1, float &motor2, float &motor3, float &motor4){
 
 void PID_Yaw(float &motor1, float &motor2, float &motor3, float &motor4) {
 	// calculate error
-	float errorYaw = quad->yawRef - quad->yaw;
+	float errorYaw = quad->yawRef - (quad->rotZ - quad->calibZ);
 	static float errorPrevYaw = errorYaw;
 	static float error2xPrevYaw = errorYaw;
 

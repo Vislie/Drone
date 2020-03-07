@@ -9,21 +9,21 @@
 //-----------Pitch------------//
 
 // Ku = 0.05, Tu = 3.09, ZN-method
-constexpr float Kp_pitch = 0.1;
-constexpr float Ki_pitch = 0.012;	//tidl 0.007
-constexpr float Kd_pitch = 14.0;	//tidl 10.0, 12
+constexpr float Kp_pitch = 0.3; // 0.1;
+constexpr float Ki_pitch = 0.012;		//tidl 0.007
+constexpr float Kd_pitch = 14.0;		//tidl 10.0, 12
 
 //-----------Roll------------//
 
-constexpr float Kp_roll = 0.1;
+constexpr float Kp_roll = 0.3; // 0.1;
 constexpr float Ki_roll = 0.012;
 constexpr float Kd_roll = 14.0;
 
 //-----------Yaw------------//
 
-constexpr float Kp_yaw = 0.0;// 0.2;
-constexpr float Ki_yaw = 0.0;// 0.03;
-constexpr float Kd_yaw = 0.0;// 25.0;
+constexpr float Kp_yaw = 0.4;// 0.2;
+constexpr float Ki_yaw = 0.01;// 0.03;
+constexpr float Kd_yaw = 0.05;// 25.0;
 
 //-----------accX------------//
 

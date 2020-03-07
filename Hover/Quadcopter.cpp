@@ -15,7 +15,11 @@ Quadcopter::~Quadcopter()
 
 void Quadcopter::getMotorThrust(float& m1Thrust, float& m2Thrust, float& m3Thrust, float& m4Thrust)
 {
-	int thrust = getThrust();
+	//int thrust = getThrust();		// From Bluetooth
+	int thrust = receiver->getThrust();
+	pitchRef = receiver->getPitchRef();
+	rollRef = receiver->getRollRef();
+	yawRef = receiver->getYawRef();
 	float m1P = 0.0, m2P = 0.0, m3P = 0.0, m4P = 0.0;    // Thrust from Pitch-PID
 	float m1R = 0.0, m2R = 0.0, m3R = 0.0, m4R = 0.0;    // Thrust from Roll-PID
 	float m1Y = 0.0, m2Y = 0.0, m3Y = 0.0, m4Y = 0.0;    // Thrust from Yaw-PID
